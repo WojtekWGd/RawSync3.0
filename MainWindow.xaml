@@ -1,0 +1,155 @@
+﻿<Window x:Class="MVVMDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMDemo"
+        mc:Ignorable="d"
+        Title="RAW Sync v. 3.0: Main Window"
+        Height="800" Width="1233"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <!-- Row 0: Menu -->
+        <Menu Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,0" Background="White">
+            <MenuItem Header="File" >
+                <MenuItem Header="Exit" Command="{Binding ProgramExitCommand}" />
+            </MenuItem>
+            <MenuItem Header="Settings" Command="{Binding OpenSettingsCommand}" />
+            <MenuItem Header="Help" Command="{Binding ProgramHelpCommand}" />
+        </Menu>
+        
+        <!-- COLUMNS FOR PROCESSED FILES: 1, 2, 3 -->
+        <!-- Row 1 -->
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Processed Folder Files List:" Margin="0,7,5,2" HorizontalAlignment="Right" />
+        <TextBlock x:Name="ProcessedFolderText" Grid.Column="2" Grid.Row="1" Margin="10,7,5,2" TextWrapping="WrapWithOverflow" Text="{Binding Path=ProcessedFolder}" HorizontalAlignment="Left" />
+        <Button Content="..." Grid.Column="3" Grid.Row="1" Width="20" Height="20" Margin="0,2,0,0" Command="{Binding SelectProcessedFolderCommand}" CommandParameter="{Binding ElementName=ProcessedFolderText, Path=Text}"/>
+
+        <!-- Row 2 -->
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+            <TextBlock Text="View Filter:" />
+            <Border Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="2" Margin="0,2,20,5" CornerRadius="3">
+                <StackPanel>
+                    <CheckBox IsChecked="{Binding Path=CheckProcessedQualified}" Content="Processed Files" Margin="10,8,20,10" HorizontalAlignment="Left" />
+                    <CheckBox IsChecked="{Binding Path=CheckProcessedNonQualified}" Content="Other Files" Margin="10,0,20,8" HorizontalAlignment="Left" />
+                </StackPanel>
+            </Border>
+            <Button Command="{Binding RefreshProcessedFileListCommand}" Content=" Refresh from Disk -> " Margin="0,20,20,10" Height="20" />
+            <Button Command="{Binding RemoveProcessedItemCommand}" CommandParameter="{Binding ElementName=ProcessedFilesGrid, Path=SelectedIndex}" Content=" Remove from List " Margin="0,10,20,10" Height="20" />
+        </StackPanel>
+
+        <DataGrid x:Name="ProcessedFilesGrid" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" MinWidth="200" AlternatingRowBackground="#FFE0F2FD" ItemsSource="{Binding MyProcessedGridView}"
+                  CanUserAddRows="False" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" IsSynchronizedWithCurrentItem="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="40" Binding="{Binding Path=Id, StringFormat=D4}" />
+                <DataGridTextColumn Header="File Name" Width="150" Binding="{Binding Path=Name}" />
+                <DataGridTextColumn Header="Ext." Width="40" Binding="{Binding Path=Extension}" />
+                <DataGridTextColumn Header="Date/Time" Width="120" Binding="{Binding Path=TimeStamp}" />
+                <DataGridCheckBoxColumn Header="Proc?" Width="45" Binding="{Binding Path=IsQualified}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Row 4 -->
+        <TextBlock Grid.Column="1" Grid.Row="4" Text="Total Files listed:" Margin="0,2,5,2" HorizontalAlignment="Right" />
+        <TextBlock Grid.Column="2" Grid.Row="4" Margin="10,2,0,0" HorizontalAlignment="Left" Text="{Binding Path=MyProcessedFolderFilesNo}"/>
+
+        <!-- Row 5 -->
+        <TextBlock Grid.Column="1" Grid.Row="5" Text="Processed Files listed:" Margin="0,2,5,2" HorizontalAlignment="Right" />
+        <TextBlock Grid.Column="2" Grid.Row="5" Margin="10,2,0,0" HorizontalAlignment="Left" Text="{Binding Path=MyProcessedFilesNo}"/>
+
+        <!-- Row 6 -->
+        <TextBlock Grid.Column="1" Grid.Row="6" Text="Files shown in View:" Margin="0,2,5,2" HorizontalAlignment="Right" />
+        <TextBlock Grid.Column="2" Grid.Row="6" Margin="10,2,0,0" HorizontalAlignment="Left" Text="{Binding Path=MyProcessedFilesShownNo}"/>
+
+        
+        <!-- SEPARATOR COLUMN-->
+        <Border Background="Black" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="5" Grid.Row="1" Grid.RowSpan="6" />
+
+
+        <!-- COLUMNS FOR RAW FILES: 7, 8, 9 -->
+        <!-- Row 1-->
+        <TextBlock Grid.Column="7" Grid.Row="1" Text="RAW Folder Files List:" Margin="0,7,5,2" HorizontalAlignment="Right" />
+        <TextBlock x:Name="RawFolderText" Grid.Column="8" Grid.Row="1" Margin="10,7,5,2" TextWrapping="WrapWithOverflow" Text="{Binding Path=RawFolder}" HorizontalAlignment="Left" />
+        <Button Content="..." Grid.Column="9" Grid.Row="1" Width="20" Height="20" Margin="0,2,0,0" Command="{Binding SelectRawFolderCommand}" CommandParameter="{Binding ElementName=RawFolderText, Path=Text}"/>
+        
+        <!-- Row 2 -->
+        <StackPanel Orientation="Vertical" Grid.Column="7" Grid.Row="2" VerticalAlignment="Center">
+            <TextBlock Text="View Filter:" />
+            <Border Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="8" Margin="0,2,20,15" CornerRadius="3">
+                <StackPanel>
+                    <CheckBox IsChecked="{Binding Path=CheckRawQualified}" Content="RAW Files" Margin="10,8,20,8" HorizontalAlignment="Left" />
+                    <CheckBox IsChecked="{Binding Path=CheckRawNonQualified}" Content="Other Files" Margin="10,0,20,8" HorizontalAlignment="Left" />
+                </StackPanel>
+            </Border>
+            <TextBlock Text="Highlight Delta:" Foreground="Red" />
+            <Border Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1" Grid.Column="8" Margin="0,2,20,5" CornerRadius="3">
+                <CheckBox IsChecked="{Binding Path=CheckHighlightDelta}" Content="Enable" Margin="10,8,20,8" HorizontalAlignment="Left" Foreground="Red" />
+            </Border>
+            <Button Command="{Binding RefreshRawFileListCommand}" Content=" Refresh from Disk -> " Margin="0,20,20,10" Height="20" />
+            <Button Command="{Binding RemoveRawItemCommand}" CommandParameter="{Binding ElementName=RawFilesGrid, Path=SelectedIndex}" Content=" Remove from List " Margin="0,10,20,10" Height="20" />
+            <Button Command="{Binding GetDeltaCommand}" Content=" Deletion Window " Margin="0,10,20,10" Height="20" Background="LightPink" />
+        </StackPanel>
+
+        <DataGrid x:Name="RawFilesGrid" Grid.Column="8" Grid.Row="2" Grid.ColumnSpan="2" MinWidth="200" AlternatingRowBackground="#FFEAFDE0" ItemsSource="{Binding MyRawGridView}"
+                  CanUserAddRows="False" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" IsSynchronizedWithCurrentItem="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Width="40" Binding="{Binding Path=Id, StringFormat=D4}" />
+                <DataGridTextColumn Header="File Name" Width="150" Binding="{Binding Path=Name}" />
+                <DataGridTextColumn Header="Ext." Width="40" Binding="{Binding Path=Extension}" />
+                <DataGridTextColumn Header="Date/Time" Width="120" Binding="{Binding Path=TimeStamp}" />
+                <DataGridCheckBoxColumn Header="RAW?" Width="45" Binding="{Binding Path=IsQualified}"/>
+            </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=BelongsToDelta}" Value="true">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+        </DataGrid>
+        
+        <!-- Row 3 -->
+        <TextBlock Grid.Column="7" Grid.Row="3" Text="Total Files listed:" Margin="0,2,5,2" HorizontalAlignment="Right" />
+        <TextBlock Grid.Column="8" Grid.Row="3" Margin="10,2,0,0" HorizontalAlignment="Left" Text="{Binding Path=MyRawFolderFilesNo}"/>
+        
+        <!-- Row 4 -->
+        <TextBlock Grid.Column="7" Grid.Row="4" Text="RAW Files listed:" Margin="0,2,5,2" HorizontalAlignment="Right" />
+        <TextBlock Grid.Column="8" Grid.Row="4" Margin="10,2,0,0" HorizontalAlignment="Left" Text="{Binding Path=MyRawFilesNo}"/>
+
+        <!-- Row 5 -->
+        <TextBlock Grid.Column="7" Grid.Row="5" Text="Files shown in View:" Margin="0,2,5,2" HorizontalAlignment="Right" />
+        <TextBlock Grid.Column="8" Grid.Row="5" Margin="10,2,0,0" HorizontalAlignment="Left" Text="{Binding Path=MyRawFilesShownNo}"/>
+
+        <!-- Row 6 -->
+        <TextBlock Grid.Column="7" Grid.Row="6" Text="Delta Files:" Margin="0,2,5,2" HorizontalAlignment="Right" Foreground="Red"/>
+        <TextBlock Grid.Column="8" Grid.Row="6" Margin="10,2,0,0" HorizontalAlignment="Left" Foreground="Red" Text="{Binding Path=MyDeltaFilesNo}"/>
+
+    </Grid>
+</Window>
