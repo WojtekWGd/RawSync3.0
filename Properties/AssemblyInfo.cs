@@ -7,11 +7,11 @@ using System.Windows;
 // Ogólne informacje o zestawie są kontrolowane poprzez następujący 
 // zestaw atrybutów. Zmień wartości tych atrybutów, aby zmodyfikować informacje
 // powiązane z zestawem.
-[assembly: AssemblyTitle("MVVMDemo")]
+[assembly: AssemblyTitle("RawSync")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RAW Sync 2.0")]
+[assembly: AssemblyProduct("RAW Sync 3.0")]
 [assembly: AssemblyCopyright("Copyright ©  2020 Wojciech Wasiukiewicz")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVVMDemo.Models
+namespace RawSync.Models
 {
     public class DeletionProgressReportModel
     {

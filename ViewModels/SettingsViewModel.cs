@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using MVVMDemo.Models;
+using RawSync.Models;
 
-namespace MVVMDemo.ViewModels
+namespace RawSync.ViewModels
 {
     class SettingsViewModel
     {

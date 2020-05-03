@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using MVVMDemo.Models;
-using MVVMDemo.ViewModels;
+﻿using System.Windows;
+using RawSync.Models;
+using RawSync.ViewModels;
 
-namespace MVVMDemo
+namespace RawSync
 {
     /// <summary>
     /// Logika interakcji dla klasy App.xaml

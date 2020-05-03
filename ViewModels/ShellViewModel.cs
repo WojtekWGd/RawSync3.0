@@ -1,5 +1,5 @@
-﻿using MVVMDemo.Models;
-using MVVMDemo.CustomMessageBox;
+﻿using RawSync.Models;
+using RawSync.CustomMessageBox;
 using System;
 using System.Collections;
 using System.Collections.ObjectModel;
@@ -12,7 +12,7 @@ using System.Windows.Data;
 using WinForms = System.Windows.Forms;
 using System.Text.RegularExpressions;
 
-namespace MVVMDemo.ViewModels
+namespace RawSync.ViewModels
 {
     class ShellViewModel : INotifyPropertyChanged
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MVVMDemo.ViewModels
+namespace RawSync.ViewModels
 {
     public class RelayCommand : ICommand
     {

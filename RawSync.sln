@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMDemo", "MVVMDemo.csproj", "{150AF5DB-6E09-46B0-A739-E4602DE94DA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawSyncMVVM", "RawSyncMVVM.csproj", "{150AF5DB-6E09-46B0-A739-E4602DE94DA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

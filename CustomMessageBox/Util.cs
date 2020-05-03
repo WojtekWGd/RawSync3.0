@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace MVVMDemo.CustomMessageBox
+namespace RawSync.CustomMessageBox
 {
     using System.Drawing;
     using System.Windows;

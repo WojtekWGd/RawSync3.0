@@ -1,4 +1,4 @@
-﻿using MVVMDemo.CustomMessageBox;
+﻿using RawSync.CustomMessageBox;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MVVMDemo.Models
+namespace RawSync.Models
 {
     public class FolderListingModel
     {

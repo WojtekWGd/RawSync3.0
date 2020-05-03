@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------
 using System.Windows;
 
-namespace MVVMDemo.CustomMessageBox
+namespace RawSync.CustomMessageBox
 {
 
     public enum CustomMessageBoxButton

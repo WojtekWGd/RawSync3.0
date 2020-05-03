@@ -1,5 +1,5 @@
-﻿using MVVMDemo.Models;
-using MVVMDemo.CustomMessageBox;
+﻿using RawSync.Models;
+using RawSync.CustomMessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +14,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using System.Threading;
 
-namespace MVVMDemo.ViewModels
+namespace RawSync.ViewModels
 {
     class DeltaViewModel : INotifyPropertyChanged
     {
